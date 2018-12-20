@@ -12,22 +12,22 @@ import com.aricionur.jsfJpa.entity.*;
 @SessionScoped
 public class PatientController {
 	
+	DAO dao;
 	Patient patientAdd;
 	List<Patient> patientList;
 	
 	@PostConstruct
 	public void init() {
-		DAO dao = new DAO();
+		dao = new DAO();
 		this.patientAdd = new Patient();
 		this.patientList = dao.getAllPatients();
 	}
 	
 	public String save(){
-		DAO dao = new DAO();
-		System.out.println("\n--------------------\n");
+		System.out.println("\n------running patient save--------------\n");
 		System.out.println(patientAdd.getName() + " hastasi kaydediliyor..");
 		dao.insert(patientAdd);
-		
+		patientAdd = new Patient();
 		
 		patientList = dao.getAllPatients();
 		return "patientView.xhtml?faces-redirect=true";

@@ -18,7 +18,7 @@ public class LoginController {
 	String defaultPassword = "1234";
 
 	public String login() {
-		System.out.println("-----------------");
+		System.out.println("-------running login function----------");
 
 		if (getUsername().equals(defaultUsername) && getPassword().equals(defaultPassword)) {
 

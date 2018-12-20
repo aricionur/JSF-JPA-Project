@@ -13,22 +13,25 @@ import com.aricionur.jsfJpa.entity.*;
 @SessionScoped
 public class DoctorController {
 	
-	
+	DAO dao;
 	Doctor doctorAdd;
 	List<Doctor> doctorList;
 	
 	@PostConstruct
 	public void init() {
-		DAO dao = new DAO();
+		dao = new DAO();
 		this.doctorAdd = new Doctor();
 		this.doctorList = dao.getAllDoctors();
 	}
 	
 	public String save(){
-		DAO dao = new DAO();
-		System.out.println("\n--------------------\n");
+		System.out.println("\n-----------running doctor save---------\n");
 		System.out.println(doctorAdd.getName() + " kullanýcýsý kaydediliyor..");
+//		dao = new DAO();
 		dao.insert(doctorAdd);
+		// to refresh docorAdd object otherwise doing update onto last data written to database with same id number
+		// hibernate does not create new id number for persist so enitity manager is doing 
+		doctorAdd = new Doctor();
 		
 		
 		doctorList = dao.getAllDoctors();
@@ -36,17 +39,22 @@ public class DoctorController {
 		
 		
 	}
-	
-	public void setAddDoctor(Doctor addDoctor) {
-		this.doctorAdd = addDoctor;
-	}
-	public Doctor getAddDoctor() {
+
+	public Doctor getDoctorAdd() {
 		return doctorAdd;
 	}
-	public void setDoctorList(List<Doctor> doctorList) {
-		this.doctorList = doctorList;
+
+	public void setDoctorAdd(Doctor doctorAdd) {
+		this.doctorAdd = doctorAdd;
 	}
+
 	public List<Doctor> getDoctorList() {
 		return doctorList;
 	}
+
+	public void setDoctorList(List<Doctor> doctorList) {
+		this.doctorList = doctorList;
+	}
+	
+	
 }

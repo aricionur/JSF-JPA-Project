@@ -9,7 +9,7 @@ public abstract class ADao {
 	EntityManager em;
 	
 	public ADao (){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JSF-JPA-Project");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Project");
 		this.em = emf.createEntityManager();
 		
 	}
