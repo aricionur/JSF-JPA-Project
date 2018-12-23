@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -20,14 +19,8 @@ public class Patient {
 	
 	String name;
 	
-//	@Transient
-//	String patientComplaint;
-	
-//	@OneToOne
-//	Hospital hospital;
-//	
-//	@ManyToMany(mappedBy = "patientList")
-//	List<Doctor> doctorList = new ArrayList<>();
+	@ManyToMany(mappedBy = "patientList")
+	List<Hospital> patientHospitalList = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -45,30 +38,12 @@ public class Patient {
 		this.name = name;
 	}
 
-//	public String getPatientComplaint() {
-//		return patientComplaint;
-//	}
-//
-//	public void setPatientComplaint(String patientComplaint) {
-//		this.patientComplaint = patientComplaint;
-//	}
-//
-//	public List<Doctor> getDoctorList() {
-//		return doctorList;
-//	}
-//
-//	public void setDoctorList(List<Doctor> doctorList) {
-//		this.doctorList = doctorList;
-//	}
-//
-//	public Hospital getHospital() {
-//		return hospital;
-//	}
-//
-//	public void setHospital(Hospital hospital) {
-//		this.hospital = hospital;
-//	}
-	
+	public void setPatientHospitalList(List<Hospital> patientHospitalList) {
+		this.patientHospitalList = patientHospitalList;
+	}
+	public List<Hospital> getPatientHospitalList() {
+		return patientHospitalList;
+	}
 	
 	
 }

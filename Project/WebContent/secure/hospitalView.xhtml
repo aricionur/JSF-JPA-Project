@@ -34,7 +34,7 @@
 
 
 
-			<p:dataTable id="tbl" var="hos" value="#{hospitalController.currentHospital}">
+			<p:dataTable id="tbl" var="hos" value="#{hospitalController.hospitalList}">
 				<p:column headerText="Hospital Name" sortBy="#{hos.name}">
 					<h:outputText value="#{hos.name}" />
 				</p:column>

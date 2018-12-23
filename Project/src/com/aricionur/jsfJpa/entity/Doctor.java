@@ -1,5 +1,6 @@
 package com.aricionur.jsfJpa.entity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Doctor {
@@ -23,13 +22,10 @@ public class Doctor {
 
 	String name;
 
+	@ManyToMany(mappedBy = "doctorList" )
+	List<Hospital> doctorHospitalList = new ArrayList<>();
 	
 	
-	
-//	@ManyToMany(fetch = FetchType.LAZY)
-//	@JoinTable(name = "doctor_patient", joinColumns=@JoinColumn(name="doctor_id"), inverseJoinColumns=@JoinColumn(name="patient_id"))
-//	List<Patient> patientList = new ArrayList<>();
-
 	public int getId() {
 		return id;
 	}
@@ -46,14 +42,13 @@ public class Doctor {
 		this.name = name;
 	}
 
-//	public List<Patient> getPatientList() {
-//		return patientList;
-//	}
-//
-//	public void setPatientList(List<Patient> patientList) {
-//		this.patientList = patientList;
-//	}
-//	
+
+	public void setDoctorHospitalList(List<Hospital> doctorHospitalList) {
+		this.doctorHospitalList = doctorHospitalList;
+	}
+	public List<Hospital> getDoctorHospitalList() {
+		return doctorHospitalList;
+	}
 	
 
 }

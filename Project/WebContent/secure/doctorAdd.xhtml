@@ -48,6 +48,13 @@
 					</p:inputText>
 					<p:message for="doctorName" />
 
+					<p:outputLabel for="perName" value="OneMenuDeneme" />
+	       			<p:selectOneMenu id="perName" value="#{doctorController.selectedHospitalName}">
+            			<f:selectItems value="#{doctorController.hospitalNameList}" />
+        			</p:selectOneMenu>
+            		<p:message for="perName" />
+
+
 					<h:outputText value="" />
 					<h:outputText value="" />
 					<p:commandButton value="Save" action="#{doctorController.save}" />

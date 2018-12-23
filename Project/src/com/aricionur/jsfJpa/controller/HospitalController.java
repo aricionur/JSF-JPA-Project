@@ -1,5 +1,7 @@
 package com.aricionur.jsfJpa.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -15,24 +17,30 @@ public class HospitalController {
 	
 	DAO dao;
 	Hospital hospitalAdd;
-	Hospital currentHospital;
+//	Hospital currentHospital;
+	List<Hospital> hospitalList;
+	
 	
 	
 	@PostConstruct
 	public void init() {
 		dao = new DAO();
 		this.hospitalAdd = new Hospital();//burada hospital ve hospital_patient tablolarýný JPA oluþturacak
-		this.hospitalAdd.setId(UUID.randomUUID().toString());
-		this.currentHospital = dao.getSingleHospitalById(this.hospitalAdd.getId());
+//		this.hospitalAdd.setId(UUID.randomUUID().toString());  // artýk genereted value ile artacak
+//		this.currentHospital = dao.getSingleHospitalById(this.hospitalAdd.getId());
+		this.hospitalList = dao.getAllHospitals();
 		
 	}
 	
+
 	public String save(){
-		System.out.println("\n--------------------\n");
+		System.out.println("\n\n--------------------------------\n\n");
 		System.out.println(hospitalAdd.getName() + "is saving...");
 		
 		dao.insert(hospitalAdd);
-		this.currentHospital = dao.getSingleHospitalById(this.hospitalAdd.getId());
+		hospitalAdd= new Hospital();
+		
+		this.hospitalList = dao.getAllHospitals();
 		return "hospitalView.xhtml?faces-redirect=true";
 		
 		
@@ -46,14 +54,12 @@ public class HospitalController {
 		this.hospitalAdd = hospitalAdd;
 	}
 
-	public Hospital getCurrentHospital() {
-		return currentHospital;
+	public void setHospitalList(List<Hospital> hospitalList) {
+		this.hospitalList = hospitalList;
 	}
+	public List<Hospital> getHospitalList() {
+		return hospitalList;
+	}
+	
 
-	public void setCurrentHospital(Hospital currentHospital) {
-		this.currentHospital = currentHospital;
-	}
-	
-	
-	
 }

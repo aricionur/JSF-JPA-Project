@@ -47,6 +47,13 @@
 						<f:validateLength minimum="2" />
 					</p:inputText>
 					<p:message for="patientName" />
+					
+					<p:outputLabel for="perName" value="OneMenuDeneme" />
+	       			<p:selectOneMenu id="perName" value="#{patientController.selectedHospitalName}">
+            			<f:selectItems value="#{patientController.hospitalNameList}" />
+        			</p:selectOneMenu>
+            		<p:message for="perName" />
+						
 
 					<h:outputText value="" />
 					<h:outputText value="" />
