@@ -7,9 +7,11 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Hospital View Page</title>
+	<title>Doctors View Page</title>
 </h:head>
+
 <h:body>
+
 	<h:form>
 		<p:growl id="messages" showDetail="false" />
 		
@@ -31,36 +33,47 @@
 				</p:submenu>
 			</p:menu>
 
-			<p:dataTable id="tbl" var="hos" value="#{hospitalController.hospitalList}">
-				<p:column headerText="Hospital Name" sortBy="#{hos.name}">
-					<h:outputText value="#{hos.name}" />
+
+
+
+			<p:dataTable id="doc_tbl" var="doc" value="#{hospitalController.doctorListOfSelecetedHospital}">
+				
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="7">#{hospitalController.selectedHospitalName}'s doctors</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:column headerText="Doctor Name" sortBy="#{doc.name}">
+					<h:outputText value="#{doc.name}" />
 				</p:column>
 
-				<p:column headerText="Hospital Id">
-					<h:outputText value="#{hos.id}" />
+				<p:column headerText="Doctor Id">
+					<h:outputText value="#{doc.id}" />
 				</p:column>
 			</p:dataTable>
 
-			<p:panel>
-				<p:messages autoUpdate="true" />
-				<h:panelGrid columns="3" cellpadding="5">
+			<p:dataTable id="pat_tbl" var="pat" value="#{hospitalController.patientListOfSelecetedHospital}">
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="7">#{hospitalController.selectedHospitalName}'s patients</p:column>
+					</p:row>
+				</f:facet>
 				
-				<p:outputLabel for="perName" value="Select Hospital" />
-	       			<p:selectOneMenu id="perName" value="#{hospitalController.selectedHospitalName}">
-            			<f:selectItems value="#{hospitalController.hospitalNameList}" />
-        			</p:selectOneMenu>
-            		<p:message for="perName" />
+				<p:column headerText="Patient Name" sortBy="#{pat.name}">
+					<h:outputText value="#{pat.name}" />
+				</p:column>
+
+				<p:column headerText="Patient Id">
+					<h:outputText value="#{pat.id}" />
+				</p:column>
+			</p:dataTable>
 
 
-					<h:outputText value="" />
-					<h:outputText value="" />
-					<p:commandButton value="View" action="#{hospitalController.viewSelectedHospitalDoctors}" />
-
-				</h:panelGrid>
-			</p:panel>
-			
 
 		</p:panelGrid>
 	</h:form>
+
 </h:body>
+
 </html>
